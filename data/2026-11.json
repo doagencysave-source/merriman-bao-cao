@@ -1,0 +1,44 @@
+{
+ "thang": "2026-11",
+ "cap_nhat": "2026-11-25T15:30:00+07:00",
+ "google": {
+  "chien_dich": [
+   {
+    "ten": "Google Mua sắm (Shopping) Merriman T11 – nhóm 2",
+    "trang_thai": "Tạm dừng",
+    "hien_thi": 209617,
+    "nhap": 2446,
+    "ctr": 1.17,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   },
+   {
+    "ten": "Google Mua sắm (Shopping) Merriman T11",
+    "trang_thai": "Tạm dừng",
+    "hien_thi": 1700,
+    "nhap": 32,
+    "ctr": 1.88,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   },
+   {
+    "ten": "Google Tìm kiếm Đồng phục Merriman T11",
+    "trang_thai": "Tạm dừng",
+    "hien_thi": 9344,
+    "nhap": 615,
+    "ctr": 6.58,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   }
+  ],
+  "theo_ngay": [],
+  "cum_tu": []
+ },
+ "facebook": {
+  "chien_dich": [],
+  "theo_ngay": []
+ }
+}

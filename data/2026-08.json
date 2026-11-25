@@ -1,0 +1,24 @@
+{
+ "thang": "2026-08",
+ "cap_nhat": "2026-11-25T15:30:00+07:00",
+ "google": {
+  "chien_dich": [
+   {
+    "ten": "Google Mua sắm (Shopping) Merriman",
+    "trang_thai": "Đã chạy xong",
+    "hien_thi": 30909,
+    "nhap": 212,
+    "ctr": 0.69,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   }
+  ],
+  "theo_ngay": [],
+  "cum_tu": []
+ },
+ "facebook": {
+  "chien_dich": [],
+  "theo_ngay": []
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "thang": "2026-10",
+ "cap_nhat": "2026-11-25T15:30:00+07:00",
+ "google": {
+  "chien_dich": [
+   {
+    "ten": "Google Mua sắm (Shopping) Merriman T11",
+    "trang_thai": "Đã chạy xong",
+    "hien_thi": 308432,
+    "nhap": 3536,
+    "ctr": 1.15,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   },
+   {
+    "ten": "Google Tìm kiếm Đồng phục Merriman T11",
+    "trang_thai": "Đã chạy xong",
+    "hien_thi": 3903,
+    "nhap": 221,
+    "ctr": 5.66,
+    "ty_le_hien_thi": null,
+    "chuyen_doi": 0,
+    "cuoc_goi": 0
+   }
+  ],
+  "theo_ngay": [],
+  "cum_tu": []
+ },
+ "facebook": {
+  "chien_dich": [],
+  "theo_ngay": []
+ }
+}
