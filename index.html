@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Merriman · Báo cáo quảng cáo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Bố cục: một cột, chọn tháng ở đầu, tổng quan rồi Google, Facebook */
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --fg: #17202e; --muted: #5c6677; --line: #e1e5ec;
+  --accent: #23407a; --google: #2f6fd6; --facebook: #4a5fc9; --ok: #1d7a4a; --warn: #a86a00; --bad: #b3261e;
+  --font: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #10141b; --panel: #171d27; --fg: #e8ecf3; --muted: #9aa5b6; --line: #29313f; --accent: #8fb0ef; --google: #6d9ef0; --facebook: #8a98ec; --ok: #5cc28c; --warn: #e0a53d; --bad: #f08a80; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #10141b; --panel: #171d27; --fg: #e8ecf3; --muted: #9aa5b6; --line: #29313f; --accent: #8fb0ef; --google: #6d9ef0; --facebook: #8a98ec; --ok: #5cc28c; --warn: #e0a53d; --bad: #f08a80; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 32px; }
+header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { margin: 4px 0 0; font-size: clamp(24px, 4vw, 32px); line-height: 1.2; font-weight: 700; text-wrap: balance; }
+h2 { margin: 0; font-size: 19px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.lede { margin: 8px 0 0; color: var(--muted); max-width: 62ch; }
+.pick { display: flex; flex-direction: column; gap: 6px; }
+.pick label { font-size: 12px; color: var(--muted); font-weight: 500; }
+select { font: inherit; font-weight: 600; color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; min-width: 190px; }
+select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.card .k { font-size: 13px; color: var(--muted); }
+.card .v { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.card .d { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.d.up { color: var(--ok); } .d.down { color: var(--bad); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 14px; }
+th, td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 170px; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+.pill { display: inline-block; font-size: 12px; padding: 1px 9px; border-radius: 999px; border: 1px solid currentColor; }
+.pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); } .pill.bad { color: var(--bad); }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart text { fill: var(--muted); font-size: 11px; font-family: var(--font); }
+.tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.12); white-space: nowrap; }
+.empty { border: 1px dashed var(--line); border-radius: 12px; padding: 20px; color: var(--muted); background: var(--panel); }
+.note { margin: 0; font-size: 13px; color: var(--muted); }
+details { color: var(--muted); font-size: 14px; }
+summary { cursor: pointer; color: var(--fg); font-weight: 500; }
+footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow">Merriman · Đồng phục</p>
+      <h1>Kết quả quảng cáo Google và Facebook</h1>
+      <p class="lede" id="lede">Đang tải số liệu…</p>
+    </div>
+    <div class="pick">
+      <label for="thang">Chọn tháng</label>
+      <select id="thang" aria-label="Chọn tháng"></select>
+    </div>
+  </header>
+
+  <div id="trong" class="empty" hidden>Số liệu tháng này đang được team Do Agency tổng hợp. Trang sẽ cập nhật mỗi 3 ngày.</div>
+
+  <div id="noidung" hidden>
+    <section id="tong-quan">
+      <h2>Tổng quan tháng</h2>
+      <div class="grid" id="tong"></div>
+    </section>
+
+    <section id="google" style="margin-top:32px">
+      <h2><span class="dot" style="background:var(--google)"></span>Google Ads</h2>
+      <div class="grid" id="g-cards"></div>
+      <div class="panel"><h3>Lượt nhấp theo ngày</h3><div class="chart" id="g-chart"></div></div>
+      <div class="panel"><h3>Từng chiến dịch</h3><div class="tw"><table>
+        <thead><tr><th>Chiến dịch</th><th>Trạng thái</th><th>Hiển thị</th><th>Nhấp</th><th>CTR</th><th>Tỷ lệ hiển thị</th><th>Chuyển đổi</th><th>Cuộc gọi</th></tr></thead>
+        <tbody id="g-table"></tbody></table></div></div>
+      <div class="panel"><h3>Khách đã tìm gì trên Google</h3><p class="note">15 cụm từ có nhiều lượt nhấp nhất trong tháng.</p><div class="tw"><table>
+        <thead><tr><th>Cụm từ tìm kiếm</th><th>Hiển thị</th><th>Nhấp</th><th>Chuyển đổi</th></tr></thead>
+        <tbody id="g-terms"></tbody></table></div></div>
+    </section>
+
+    <section id="facebook" style="margin-top:32px">
+      <h2><span class="dot" style="background:var(--facebook)"></span>Facebook Ads</h2>
+      <div class="grid" id="f-cards"></div>
+      <div class="panel"><h3>Tin nhắn theo ngày</h3><div class="chart" id="f-chart"></div></div>
+      <div class="panel"><h3>Từng chiến dịch</h3><div class="tw"><table>
+        <thead><tr><th>Chiến dịch</th><th>Trạng thái</th><th>Hiển thị</th><th>Tiếp cận</th><th>Tương tác</th><th>Nhấp</th><th>Tin nhắn</th></tr></thead>
+        <tbody id="f-table"></tbody></table></div></div>
+    </section>
+  </div>
+
+  <details>
+    <summary>Các chỉ số nghĩa là gì</summary>
+    <p>Hiển thị: số lần quảng cáo xuất hiện. Tiếp cận: số người khác nhau đã thấy quảng cáo Facebook. Nhấp: số lần khách bấm vào quảng cáo. CTR: phần trăm người thấy quảng cáo rồi bấm vào. Tỷ lệ hiển thị: phần trăm lượt tìm kiếm phù hợp mà quảng cáo Merriman thực sự xuất hiện trên Google. Tương tác: thích, bình luận, chia sẻ, bấm xem. Tin nhắn: số cuộc trò chuyện mới khách nhắn tới trang. Chuyển đổi và cuộc gọi: hành động liên hệ Google Ads ghi nhận được.</p>
+  </details>
+
+  <footer id="footer">Số liệu do team Do Agency đọc từ Google Ads và Meta Ads Manager.</footer>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const n = (v) => { const x = Number(v); return isFinite(x) ? x : 0; };
+  const fmt = (v) => Math.round(n(v)).toLocaleString('vi-VN');
+  const pct = (v) => (Math.round(n(v) * 100) / 100).toLocaleString('vi-VN') + '%';
+  const sum = (rows, k) => (rows || []).reduce((s, r) => s + n(r[k]), 0);
+  const tenThang = (m) => { const [y, mo] = m.split('-'); return `Tháng ${Number(mo)}/${y}`; };
+  const cache = {};
+  let ds = [];
+
+  function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function card(k, v, dTxt, dCls) {
+    const c = el('div', 'card'); c.append(el('span', 'k', k), el('span', 'v', v));
+    if (dTxt) c.append(el('span', 'd ' + (dCls || ''), dTxt));
+    return c;
+  }
+  function delta(cur, prev, label) {
+    if (prev == null || !isFinite(prev) || prev === 0) return [null];
+    const ch = (cur - prev) / prev * 100;
+    const s = (ch >= 0 ? '+' : '') + Math.round(ch).toLocaleString('vi-VN') + '% so với ' + label;
+    return [s, ch >= 0 ? 'up' : 'down'];
+  }
+  function tong(d) {
+    const g = d.google || {}, f = d.facebook || {};
+    const gc = g.chien_dich || [], fc = f.chien_dich || [];
+    const gHt = sum(gc, 'hien_thi'), gNhap = sum(gc, 'nhap');
+    return {
+      gHt, gNhap, gCtr: gHt ? gNhap / gHt * 100 : 0, gCd: sum(gc, 'chuyen_doi'), gGoi: sum(gc, 'cuoc_goi'),
+      fHt: sum(fc, 'hien_thi'), fTc: sum(fc, 'tiep_can'), fTt: sum(fc, 'tuong_tac'), fNhap: sum(fc, 'nhap'), fTn: sum(fc, 'tin_nhan'),
+      coG: gc.length > 0, coF: fc.length > 0
+    };
+  }
+  function status(s) {
+    const p = el('span', 'pill', s || '—');
+    p.classList.add(/đang chạy|hoạt động|đủ điều kiện/i.test(s || '') ? 'ok' : /từ chối|dừng|hết|tắt/i.test(s || '') ? 'bad' : 'warn');
+    return p;
+  }
+  function rows(tbody, list, cols, colspan) {
+    tbody.replaceChildren();
+    if (!list || !list.length) { const tr = tbody.insertRow(); const td = tr.insertCell(); td.colSpan = colspan; td.textContent = 'Chưa có số liệu.'; td.style.color = 'var(--muted)'; return; }
+    list.forEach((r) => { const tr = tbody.insertRow(); cols.forEach((c) => { const td = tr.insertCell(); const v = c(r); if (v instanceof Node) td.append(v); else td.textContent = v; }); });
+  }
+
+  function bars(box, data, key, color, label) {
+    box.replaceChildren();
+    const pts = (data || []).filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r.ngay)).sort((a, b) => a.ngay < b.ngay ? -1 : 1);
+    if (!pts.length) { box.append(el('p', 'note', 'Biểu đồ sẽ hiện khi có số liệu theo ngày.')); return; }
+    const W = Math.max(280, box.clientWidth || 600), H = 200, m = { t: 10, r: 8, b: 26, l: 38 };
+    const max = Math.max(1, ...pts.map((p) => n(p[key])));
+    const step = Math.pow(10, Math.floor(Math.log10(max))); const top = Math.ceil(max / step) * step;
+    const bw = (W - m.l - m.r) / pts.length;
+    const y = (v) => m.t + (H - m.t - m.b) * (1 - v / top);
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', label);
+    const mk = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); svg.append(e); return e; };
+    [0, top / 2, top].forEach((v) => { mk('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--line)' }); const t = mk('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end' }); t.textContent = fmt(v); });
+    const every = Math.max(1, Math.ceil(pts.length / Math.floor((W - m.l) / 46)));
+    const tip = el('div', 'tip'); tip.hidden = true;
+    pts.forEach((p, i) => {
+      const v = n(p[key]); const x = m.l + i * bw + bw * 0.15;
+      const r = mk('rect', { x, width: Math.max(1, bw * 0.7), y: y(v), height: Math.max(0, y(0) - y(v)), rx: 2, fill: color });
+      const show = (ev) => { const b = box.getBoundingClientRect(); tip.hidden = false; tip.textContent = `${p.ngay.slice(8)}/${p.ngay.slice(5, 7)}: ${fmt(v)} ${label.toLowerCase()}`; tip.style.left = Math.min(ev.clientX - b.left + 10, b.width - 160) + 'px'; tip.style.top = Math.max(0, ev.clientY - b.top - 34) + 'px'; };
+      r.addEventListener('pointerenter', show); r.addEventListener('pointermove', show); r.addEventListener('pointerleave', () => { tip.hidden = true; });
+      if (i % every === 0) { const t = mk('text', { x: x + bw * 0.35, y: H - 8, 'text-anchor': 'middle' }); t.textContent = p.ngay.slice(8) + '/' + p.ngay.slice(5, 7); }
+    });
+    box.append(svg, tip);
+  }
+
+  async function load(m) {
+    if (!cache[m]) { const r = await fetch(`data/${m}.json`, { cache: 'no-cache' }); if (!r.ok) throw new Error('missing'); cache[m] = await r.json(); }
+    return cache[m];
+  }
+
+  async function show(m) {
+    if (!m) return;
+    let d, prev = null;
+    try { d = await load(m); } catch (e) { $('noidung').hidden = true; $('trong').hidden = false; $('lede').textContent = 'Chưa tải được số liệu ' + tenThang(m).toLowerCase() + '.'; return; }
+    const i = ds.indexOf(m);
+    if (i >= 0 && i + 1 < ds.length) { try { prev = tong(await load(ds[i + 1])); } catch (e) { prev = null; } }
+    const t = tong(d), pl = prev ? tenThang(ds[i + 1]).toLowerCase() : '';
+    const dl = (k) => prev ? delta(t[k], prev[k], pl) : [null];
+    $('trong').hidden = t.coG || t.coF; $('noidung').hidden = !(t.coG || t.coF);
+    const lien = t.gCd + t.gGoi + t.fTn;
+    $('lede').textContent = (t.coG || t.coF)
+      ? `${tenThang(m)}: quảng cáo của Merriman hiện ${fmt(t.gHt + t.fHt)} lần trên Google và Facebook, được bấm ${fmt(t.gNhap + t.fNhap)} lần và mang về ${fmt(lien)} lượt liên hệ (tin nhắn, cuộc gọi, chuyển đổi).`
+      : `${tenThang(m)}: số liệu đang được tổng hợp.`;
+
+    const tg = $('tong'); tg.replaceChildren();
+    const lienPrev = prev ? prev.gCd + prev.gGoi + prev.fTn : null;
+    tg.append(card('Tổng lượt hiển thị', fmt(t.gHt + t.fHt), ...(prev ? delta(t.gHt + t.fHt, prev.gHt + prev.fHt, pl) : [null])),
+      card('Tổng lượt nhấp', fmt(t.gNhap + t.fNhap), ...(prev ? delta(t.gNhap + t.fNhap, prev.gNhap + prev.fNhap, pl) : [null])),
+      card('Tổng lượt liên hệ', fmt(lien), ...(prev ? delta(lien, lienPrev, pl) : [null])));
+
+    const g = d.google || {}, f = d.facebook || {};
+    const gcards = $('g-cards'); gcards.replaceChildren();
+    gcards.append(card('Lượt hiển thị', fmt(t.gHt), ...dl('gHt')), card('Lượt nhấp', fmt(t.gNhap), ...dl('gNhap')), card('CTR', pct(t.gCtr)), card('Chuyển đổi + cuộc gọi', fmt(t.gCd + t.gGoi)));
+    $('google').hidden = !t.coG;
+    bars($('g-chart'), g.theo_ngay, 'nhap', 'var(--google)', 'Lượt nhấp');
+    rows($('g-table'), g.chien_dich, [(r) => r.ten, (r) => status(r.trang_thai), (r) => fmt(r.hien_thi), (r) => fmt(r.nhap), (r) => pct(r.ctr), (r) => r.ty_le_hien_thi ? pct(r.ty_le_hien_thi) : '—', (r) => fmt(r.chuyen_doi), (r) => fmt(r.cuoc_goi)], 8);
+    rows($('g-terms'), (g.cum_tu || []).slice().sort((a, b) => n(b.nhap) - n(a.nhap)).slice(0, 15), [(r) => r.cum_tu, (r) => fmt(r.hien_thi), (r) => fmt(r.nhap), (r) => fmt(r.chuyen_doi)], 4);
+
+    const fcards = $('f-cards'); fcards.replaceChildren();
+    fcards.append(card('Lượt hiển thị', fmt(t.fHt), ...dl('fHt')), card('Người tiếp cận', fmt(t.fTc), ...dl('fTc')), card('Tương tác', fmt(t.fTt), ...dl('fTt')), card('Tin nhắn', fmt(t.fTn), ...dl('fTn')));
+    $('facebook').hidden = !t.coF;
+    bars($('f-chart'), f.theo_ngay, 'tin_nhan', 'var(--facebook)', 'Tin nhắn');
+    rows($('f-table'), f.chien_dich, [(r) => r.ten, (r) => status(r.trang_thai), (r) => fmt(r.hien_thi), (r) => fmt(r.tiep_can), (r) => fmt(r.tuong_tac), (r) => fmt(r.nhap), (r) => fmt(r.tin_nhan)], 7);
+
+    const cn = d.cap_nhat ? new Date(d.cap_nhat) : null;
+    $('footer').textContent = 'Số liệu do team Do Agency đọc từ Google Ads và Meta Ads Manager' + (cn && !isNaN(cn) ? ', cập nhật ' + cn.toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Ho_Chi_Minh' }) : '') + '. Tháng đang chạy được cập nhật mỗi 3 ngày.';
+  }
+
+  async function init() {
+    const sel = $('thang');
+    try {
+      const r = await fetch('data/index.json', { cache: 'no-cache' }); const idx = await r.json();
+      ds = (idx.thang || []).slice().sort().reverse();
+    } catch (e) { ds = []; }
+    if (!ds.length) { $('lede').textContent = 'Số liệu đang được team tổng hợp.'; $('trong').hidden = false; sel.disabled = true; sel.append(new Option('Chưa có tháng nào', '')); return; }
+    ds.forEach((m) => sel.append(new Option(tenThang(m), m)));
+    const want = location.hash.slice(1);
+    sel.value = ds.includes(want) ? want : ds[0];
+    sel.addEventListener('change', () => { history.replaceState(null, '', '#' + sel.value); show(sel.value); });
+    window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (ds.includes(h)) { sel.value = h; show(h); } });
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => show(sel.value), 200); });
+    show(sel.value);
+  }
+  init();
+})();
+</script>
+</body>
+</html>
