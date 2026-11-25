@@ -194,23 +194,25 @@ footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line)
     try { d = await load(m); } catch (e) { $('noidung').hidden = true; $('trong').hidden = false; $('lede').textContent = 'Chưa tải được số liệu ' + tenThang(m).toLowerCase() + '.'; return; }
     const i = ds.indexOf(m);
     if (i >= 0 && i + 1 < ds.length) { try { prev = tong(await load(ds[i + 1])); } catch (e) { prev = null; } }
+    const dangChay = d.cap_nhat && d.cap_nhat.slice(0, 7) === m;
+    if (dangChay) prev = null;
     const t = tong(d), pl = prev ? tenThang(ds[i + 1]).toLowerCase() : '';
     const dl = (k) => prev ? delta(t[k], prev[k], pl) : [null];
     $('trong').hidden = t.coG || t.coF; $('noidung').hidden = !(t.coG || t.coF);
     const lien = t.gCd + t.gGoi + t.fTn;
     $('lede').textContent = (t.coG || t.coF)
-      ? `${tenThang(m)}: quảng cáo của Merriman hiện ${fmt(t.gHt + t.fHt)} lần trên Google và Facebook, được bấm ${fmt(t.gNhap + t.fNhap)} lần và mang về ${fmt(lien)} lượt liên hệ (tin nhắn, cuộc gọi, chuyển đổi).`
+      ? `${tenThang(m)}: quảng cáo của Merriman hiện ${fmt(t.gHt + t.fHt)} lần trên Google và Facebook, được bấm ${fmt(t.gNhap + t.fNhap)} lần ${lien ? ` và mang về ${fmt(lien)} lượt liên hệ (tin nhắn, cuộc gọi, chuyển đổi)` : ''}.${dangChay ? ' Tháng đang chạy, số liệu tính đến ngày cập nhật.' : ''}`
       : `${tenThang(m)}: số liệu đang được tổng hợp.`;
 
     const tg = $('tong'); tg.replaceChildren();
     const lienPrev = prev ? prev.gCd + prev.gGoi + prev.fTn : null;
     tg.append(card('Tổng lượt hiển thị', fmt(t.gHt + t.fHt), ...(prev ? delta(t.gHt + t.fHt, prev.gHt + prev.fHt, pl) : [null])),
       card('Tổng lượt nhấp', fmt(t.gNhap + t.fNhap), ...(prev ? delta(t.gNhap + t.fNhap, prev.gNhap + prev.fNhap, pl) : [null])),
-      card('Tổng lượt liên hệ', fmt(lien), ...(prev ? delta(lien, lienPrev, pl) : [null])));
+      card('Tổng lượt liên hệ', lien ? fmt(lien) : '—', ...(lien ? (prev ? delta(lien, lienPrev, pl) : [null]) : ['Chưa ghi nhận trong tháng'])));
 
     const g = d.google || {}, f = d.facebook || {};
     const gcards = $('g-cards'); gcards.replaceChildren();
-    gcards.append(card('Lượt hiển thị', fmt(t.gHt), ...dl('gHt')), card('Lượt nhấp', fmt(t.gNhap), ...dl('gNhap')), card('CTR', pct(t.gCtr)), card('Chuyển đổi + cuộc gọi', fmt(t.gCd + t.gGoi)));
+    gcards.append(card('Lượt hiển thị', fmt(t.gHt), ...dl('gHt')), card('Lượt nhấp', fmt(t.gNhap), ...dl('gNhap')), card('CTR', pct(t.gCtr)), card('Chuyển đổi + cuộc gọi', (t.gCd + t.gGoi) ? fmt(t.gCd + t.gGoi) : '—', ...((t.gCd + t.gGoi) ? [null] : ['Chưa ghi nhận trong tháng'])));
     $('google').hidden = !t.coG;
     bars($('g-chart'), g.theo_ngay, 'nhap', 'var(--google)', 'Lượt nhấp');
     rows($('g-table'), g.chien_dich, [(r) => r.ten, (r) => status(r.trang_thai), (r) => fmt(r.hien_thi), (r) => fmt(r.nhap), (r) => pct(r.ctr), (r) => r.ty_le_hien_thi ? pct(r.ty_le_hien_thi) : '—', (r) => fmt(r.chuyen_doi), (r) => fmt(r.cuoc_goi)], 8);
